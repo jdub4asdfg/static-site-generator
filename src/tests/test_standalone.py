@@ -1,6 +1,6 @@
 import unittest
-from textnode import TextNode, TextType
-from standalone import text_to_html_node, split_nodes_delimiter
+from src.textnode import TextNode, TextType
+from src.standalone import text_to_html_node, split_nodes_delimiter
 
 
 class TestStandalone(unittest.TestCase):
