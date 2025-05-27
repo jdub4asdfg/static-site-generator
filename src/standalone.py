@@ -2,6 +2,12 @@ from textnode import TextNode, TextType
 from htmlnode import LeafNode
 import re
 
+def markdown_to_blocks(markdown):
+    raw_blocks = markdown.split('\n\n')
+    strip_blocks = list(map(lambda x: x.strip(), raw_blocks))
+    blocks = list(filter(lambda x: x != '', strip_blocks))
+    return blocks
+
 
 def extract_markdown_images(text):
     matches = re.findall(r"!\[([^\[\]]*)\]\(([^\(\)]*)\)", text)

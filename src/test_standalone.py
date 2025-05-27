@@ -8,6 +8,7 @@ from standalone import (
     split_node_links,
     extract_markdown_links,
     extract_markdown_images,
+    markdown_to_blocks,
 )
 
 
@@ -177,6 +178,45 @@ class TestStandalone(unittest.TestCase):
         text2 = "Hello, this should raise an **error"
         with self.assertRaises(Exception):
             text_to_text_nodes(text2)
+
+    def test_markdown_to_blocks(self):
+        markdown = """
+First block
+
+Second block
+Another line on second block
+
+
+ Third block
+Second line on third block 
+        """
+        result = markdown_to_blocks(markdown)
+        self.assertEqual(
+            result,
+            [
+                "First block",
+                "Second block\nAnother line on second block",
+                "Third block\nSecond line on third block",
+            ],
+        )
+        markdown2 = """
+ First block 
+
+
+Second block
+Another line on second block 
+
+Third block 
+        """
+        result2 = markdown_to_blocks(markdown2)
+        self.assertEqual(
+            result2,
+            [
+                "First block",
+                "Second block\nAnother line on second block",
+                "Third block",
+            ],
+        )
 
 
 if __name__ == "__main__":
