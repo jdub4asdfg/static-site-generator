@@ -2,6 +2,7 @@ import unittest
 from textnode import TextNode, TextType
 from standalone import (
     text_to_html_node,
+    text_to_text_nodes,
     split_nodes_delimiter,
     split_node_images,
     split_node_links,
@@ -147,6 +148,35 @@ class TestStandalone(unittest.TestCase):
         self.assertEqual(result[5].text, "yet another image")
         self.assertEqual(result[5].text_type, TextType.IMAGE)
         self.assertEqual(result[5].url, "picture.jpg")
+
+    def test_text_to_text_nodes(self):
+        text = "Hello, this is **bold**, _italic_ and `code`. This is an image ![image](tungsahur.jpg) and this is a link [link](https://www.facebook.com)"
+        result = text_to_text_nodes(text)
+        self.assertEqual(result[0].text, "Hello, this is ")
+        self.assertEqual(result[0].text_type, TextType.NORMAL)
+        self.assertEqual(result[1].text, "bold")
+        self.assertEqual(result[1].text_type, TextType.BOLD)
+        self.assertEqual(result[2].text, ", ")
+        self.assertEqual(result[2].text_type, TextType.NORMAL)
+        self.assertEqual(result[3].text, "italic")
+        self.assertEqual(result[3].text_type, TextType.ITALIC)
+        self.assertEqual(result[4].text, " and ")
+        self.assertEqual(result[4].text_type, TextType.NORMAL)
+        self.assertEqual(result[5].text, "code")
+        self.assertEqual(result[5].text_type, TextType.CODE)
+        self.assertEqual(result[6].text, ". This is an image ")
+        self.assertEqual(result[6].text_type, TextType.NORMAL)
+        self.assertEqual(result[7].text, "image")
+        self.assertEqual(result[7].text_type, TextType.IMAGE)
+        self.assertEqual(result[7].url, "tungsahur.jpg")
+        self.assertEqual(result[8].text, " and this is a link ")
+        self.assertEqual(result[8].text_type, TextType.NORMAL)
+        self.assertEqual(result[9].text, "link")
+        self.assertEqual(result[9].text_type, TextType.LINK)
+        self.assertEqual(result[9].url, "https://www.facebook.com")
+        text2 = "Hello, this should raise an **error"
+        with self.assertRaises(Exception):
+            text_to_text_nodes(text2)
 
 
 if __name__ == "__main__":

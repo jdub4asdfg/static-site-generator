@@ -12,9 +12,13 @@ def extract_markdown_links(text):
     matches = re.findall(r"(?<!!)\[([^\[\]]*)\]\(([^\(\)]*)\)", text)
     return matches
 
+
 def split_node_images(old_nodes):
     new_nodes = []
     for old_node in old_nodes:
+        if old_node.text_type != TextType.NORMAL:
+            new_nodes.append(old_node)
+            continue
         segments = re.split(r"(!\[([^\[\]]*)\]\(([^\(\)]*)\))", old_node.text)
         for index, segment in enumerate(segments):
             if index % 4 == 0:
@@ -25,9 +29,13 @@ def split_node_images(old_nodes):
                 new_nodes.append(TextNode(result[0][0], TextType.IMAGE, result[0][1]))
     return new_nodes
 
+
 def split_node_links(old_nodes):
     new_nodes = []
     for old_node in old_nodes:
+        if old_node.text_type != TextType.NORMAL:
+            new_nodes.append(old_node)
+            continue
         segments = re.split(r"((?<!!)\[([^\[\]]*)\]\(([^\(\)]*)\))", old_node.text)
         for index, segment in enumerate(segments):
             if index % 4 == 0:
@@ -38,10 +46,11 @@ def split_node_links(old_nodes):
                 new_nodes.append(TextNode(result[0][0], TextType.LINK, result[0][1]))
     return new_nodes
 
+
 def split_nodes_delimiter(old_nodes, delimiter, text_type):
     new_nodes = []
     for old_node in old_nodes:
-        if old_node.text_type == text_type:
+        if old_node.text_type != TextType.NORMAL:
             new_nodes.append(old_node)
             continue
         segments = old_node.text.split(delimiter)
@@ -56,6 +65,15 @@ def split_nodes_delimiter(old_nodes, delimiter, text_type):
                 new_nodes.append(TextNode(segments[index], text_type))
 
     return new_nodes
+
+
+def text_to_text_nodes(text):
+    old_node = [TextNode(text, TextType.NORMAL)]
+    split_by_bold = split_nodes_delimiter(old_node, "**", TextType.BOLD)
+    split_by_italic = split_nodes_delimiter(split_by_bold, "_", TextType.ITALIC)
+    split_by_code = split_nodes_delimiter(split_by_italic, "`", TextType.CODE)
+    split_by_image = split_node_images(split_by_code)
+    return split_node_links(split_by_image)
 
 
 def text_to_html_node(text_node):
