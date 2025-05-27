@@ -1,6 +1,42 @@
-from .textnode import TextNode, TextType
-from .htmlnode import LeafNode
+from textnode import TextNode, TextType
+from htmlnode import LeafNode
+import re
 
+
+def extract_markdown_images(text):
+    matches = re.findall(r"!\[([^\[\]]*)\]\(([^\(\)]*)\)", text)
+    return matches
+
+
+def extract_markdown_links(text):
+    matches = re.findall(r"(?<!!)\[([^\[\]]*)\]\(([^\(\)]*)\)", text)
+    return matches
+
+def split_node_images(old_nodes):
+    new_nodes = []
+    for old_node in old_nodes:
+        segments = re.split(r"(!\[([^\[\]]*)\]\(([^\(\)]*)\))", old_node.text)
+        for index, segment in enumerate(segments):
+            if index % 4 == 0:
+                if segment:
+                    new_nodes.append(TextNode(segment, TextType.NORMAL))
+            elif index % 4 == 1:
+                result = extract_markdown_images(segment)
+                new_nodes.append(TextNode(result[0][0], TextType.IMAGE, result[0][1]))
+    return new_nodes
+
+def split_node_links(old_nodes):
+    new_nodes = []
+    for old_node in old_nodes:
+        segments = re.split(r"((?<!!)\[([^\[\]]*)\]\(([^\(\)]*)\))", old_node.text)
+        for index, segment in enumerate(segments):
+            if index % 4 == 0:
+                if segment:
+                    new_nodes.append(TextNode(segment, TextType.NORMAL))
+            elif index % 4 == 1:
+                result = extract_markdown_links(segment)
+                new_nodes.append(TextNode(result[0][0], TextType.LINK, result[0][1]))
+    return new_nodes
 
 def split_nodes_delimiter(old_nodes, delimiter, text_type):
     new_nodes = []
