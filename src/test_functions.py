@@ -1,6 +1,6 @@
 import unittest
 from textnode import TextNode, TextType
-from standalone import (
+from functions import (
     text_to_html_node,
     text_to_text_nodes,
     split_nodes_delimiter,
