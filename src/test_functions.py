@@ -12,6 +12,7 @@ from functions import (
     markdown_to_blocks,
     block_to_block_type,
     markdown_to_html_nodes,
+    extract_title,
 )
 
 
@@ -308,6 +309,21 @@ print('bruh')```
             result4,
             "<div><ul><li>Item 1</li><li>Item 2</li><li>Item 3</li></ul><ol><li>Item 1</li><li>Item 2</li><li>Item 3</li></ol></div>",
         )
+
+    def test_extract_title(self):
+        markdown = """# Title
+
+Paragraph 1
+
+Paragraph 2"""
+        result = extract_title(markdown)
+        self.assertEqual(result, "Title")
+        markdown1 = """#NotTitle
+Statement
+
+Paragraph 1"""
+        with self.assertRaises(Exception):
+            extract_title(markdown1)
 
 
 if __name__ == "__main__":
