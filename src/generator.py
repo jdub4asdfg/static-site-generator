@@ -2,12 +2,24 @@ import os
 import re
 from functions import markdown_to_html_nodes
 
+
 def recursive_page_generation(dir_path_content, template_path, dest_dir_path):
-    pass
+    list_of_files = os.listdir(dir_path_content)
+    for file in list_of_files:
+        new_dir_path_content = os.path.join(dir_path_content, file)
+        if os.path.isdir(new_dir_path_content):
+            new_dest_dir_path = os.path.join(dest_dir_path, file)
+            os.mkdir(new_dest_dir_path)
+            recursive_page_generation(
+                new_dir_path_content, template_path, new_dest_dir_path
+            )
+        elif os.path.isfile(new_dir_path_content):
+            html_file_name = re.findall(r'^(.*)md', file)[0] + 'html'
+            new_dest_dir_path = os.path.join(dest_dir_path, html_file_name)
+            generate_page(new_dir_path_content, template_path, new_dest_dir_path)
 
 
 def generate_page(from_path, template_path, dest_path):
-    print(f"Generating page from {from_path} to {dest_path} using {template_path}.")
     index_content = get_content(from_path)
     template_content = get_content(template_path)
     html_string = markdown_to_html_nodes(index_content).to_html()
@@ -33,5 +45,3 @@ def extract_title(markdown):
         raise Exception
     else:
         return title
-
-
