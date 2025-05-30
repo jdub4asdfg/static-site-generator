@@ -14,7 +14,7 @@ def recursive_page_generation(dir_path_content, template_path, dest_dir_path):
                 new_dir_path_content, template_path, new_dest_dir_path
             )
         elif os.path.isfile(new_dir_path_content):
-            html_file_name = re.findall(r'^(.*)md', file)[0] + 'html'
+            html_file_name = re.findall(r"^(.*)md", file)[0] + "html"
             new_dest_dir_path = os.path.join(dest_dir_path, html_file_name)
             generate_page(new_dir_path_content, template_path, new_dest_dir_path)
 

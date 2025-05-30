@@ -12,4 +12,4 @@ def recursive_copying(source_dir_path, dest_dir_path):
         if os.path.isdir(new_source_path):
             recursive_copying(new_source_path, new_dest_dir_path)
         elif os.path.isfile(new_source_path):
-            shutil.copy(new_source_path, new_dest_dir_path)          
+            shutil.copy(new_source_path, new_dest_dir_path)
