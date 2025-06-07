@@ -1,6 +1,6 @@
 from textnode import TextNode, TextType
 from htmlnode import ParentNode, LeafNode
-from enum import Enum
+from blocktype import BlockType
 import re
 
 
@@ -93,16 +93,7 @@ def text_node_to_html_node(text_node):
             return LeafNode("img", "", {"src": text_node.url, "alt": text_node.text})
         case _:
             raise Exception
-
-
-class BlockType(Enum):
-    PARAGRAPH = 1
-    HEADING = 2
-    CODE = 3
-    QUOTE = 4
-    UNORDERED_LIST = 5
-    ORDERED_LIST = 6
-
+        
 
 def markdown_to_blocks(markdown):
     raw_blocks = markdown.split("\n\n")
