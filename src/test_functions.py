@@ -1,19 +1,7 @@
 import unittest
 from textnode import TextNode, TextType
-from functions import (
-    text_node_to_html_node,
-    text_to_text_nodes,
-    split_nodes_delimiter,
-    split_node_images,
-    split_node_links,
-    extract_markdown_links,
-    extract_markdown_images,
-    BlockType,
-    markdown_to_blocks,
-    block_to_block_type,
-    markdown_to_html_nodes,
-    extract_title,
-)
+from md_conversion_logic import *
+from page_generation import *
 
 
 class TestFunctions(unittest.TestCase):

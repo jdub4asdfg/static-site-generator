@@ -2,8 +2,8 @@ import os
 import sys
 import shutil
 
-from copystatic import recursive_copying
-from generator import recursive_page_generation
+from copy_files import recursive_copying
+from page_generation import recursive_page_generation
 
 dir_path_static = "./static"
 dir_path_docs = "./docs"

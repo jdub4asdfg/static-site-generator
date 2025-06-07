@@ -1,6 +1,6 @@
 import os
 import re
-from functions import markdown_to_html_nodes
+from md_conversion_logic import markdown_to_html_nodes
 
 
 def recursive_page_generation(dir_path_content, template_path, dest_dir_path, basepath):
