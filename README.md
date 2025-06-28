@@ -27,9 +27,9 @@ static-site-generator/
 └── docs/
     ├── images/
     │   └── image.png
-    ├── landing_page.md
+    ├── landing_page.html
     ├── subpage/
-    │   └── subpage.md
+    │   └── subpage.html
     └── style.css
 ```
 
