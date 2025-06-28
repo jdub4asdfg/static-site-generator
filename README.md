@@ -43,7 +43,7 @@ Static site generator supports several text types:
 
 - Italic, using `-`
 
-- Code, "`" for single line code, "```" for code that spans multiple lines
+- Code, **`** for single line code, **```** for code that spans multiple lines
 
 - Links, using `[Alt text](link)`
 
@@ -67,7 +67,7 @@ Static site generator supports several text types:
 
 - Quotes, using `> ` (Take note of the space before the text, it must be there)
 
-### Things to take note when writing markdown files
+### Additional stuff to take note of
 The markdown converter does not support nesting text types, meaning you can't do this: `**_bold and italicised text_**`.
 
 The markdown converter parses the markdown file paragraph by paragraph, where paragraphs are seperated by a new line, like so:
@@ -78,3 +78,5 @@ Paragraph 2
 ```
 
 Lastly, always start your markdown files with a `h1` header, any text in this header will be the name of your browser tab.
+
+You can visit [this demo site](https://jdub4asdfg.github.io/static-site-generator/) and take a look at my source code under the **content** directory if you need an example of how to write markdown files.
