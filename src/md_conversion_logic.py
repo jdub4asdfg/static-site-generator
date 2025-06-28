@@ -106,7 +106,7 @@ def block_to_block_type(block):
     check_heading = re.findall(r"^#{1,6} ", block)
     if check_heading:
         return BlockType.HEADING
-    check_code = re.findall(r"^```[\s\S]*```$", block)
+    check_code = re.findall(r"^```(?:\w*\n)?[\s\S]*```$", block)
     if check_code:
         return BlockType.CODE
     split_by_newline = block.split("\n")
@@ -162,7 +162,7 @@ def markdown_to_html_nodes(markdown):
                 heading_node = ParentNode(f"h{hash_count}", children_of_heading)
                 children.append(heading_node)
             case BlockType.CODE:
-                code_content = re.findall(r"^```([\s\S]*)```$", block)[0]
+                code_content = re.findall(r"^```(?:\w*\n)?([\s\S]*)```$", block)[0]
                 child_of_pre = [
                     text_node_to_html_node(TextNode(code_content, TextType.CODE))
                 ]

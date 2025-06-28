@@ -8,9 +8,11 @@ _Italicised text_
 
 `Single line code`
 
-```Multi
+```
+Multi
 Line
-Code```
+Code
+```
 
 [Links](https://github.com/jdub4asdfg/static-site-generator)
 
