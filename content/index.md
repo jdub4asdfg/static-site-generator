@@ -1,19 +1,35 @@
-# Jdub's website
+# Website title
 
-## About me
+Normal text
 
-I'm 23, majoring in Electrical Engineering, looking to be a Backend Engineer in the future! I enjoy all things Star Wars, food and basketball.
+**Bold text**
 
-## My top 5 all time list
+_Italicised text_
 
-1. Darth Vader
-2. Giannis Antetokounmpo
-3. Wingstop
-4. The Andor TV series
-5. Asa Newell
+`Single line code`
+
+```Multi
+Line
+Code```
+
+[Links](https://github.com/jdub4asdfg/static-site-generator)
+
+## Images
 
 ![Darth Vader](/images/darthvader.png)
 
+## Quotes
+
 > Be careful not to choke on your aspirations, Director.
 
-This page was generated using a [static site generator](https://github.com/jdub4asdfg/static-site-generator) I built.
+## Ordered lists
+
+1. Item 1
+2. Item 2
+3. Item 3
+
+## Unordered lists
+
+- Item 1
+- Item 2
+- Item 3

@@ -36,38 +36,30 @@ static-site-generator/
 `./build.sh` to get your deployment build. Git add, commit and push to deploy your site to Github Pages.
 
 ## How to write your markdown files
-Static site generator supports several text types:
+The static site generator supports several text types:
 - Normal
 
-- Bold, using `**`
+- Bold
 
-- Italic, using `_`
+- Italic
 
-- Code, **`** for single line code, **```** for code that spans multiple lines
+- Code
 
-- Links, using `[Alt text](link)`
+- Links
 
-- Images, using `![Alt text](/images/{IMAGE_NAME}.{IMAGE_FORMAT})`
+- Images
 
-- Headers, supports up to `<h6>`, use `#`s and a space before the text
+- Headers
 
-- Ordered lists, like this (Take note of the space before the text, it must be there):
-    ```
-    1. text
-    2. text
-    3. text
-    ```
+- Ordered lists
 
-- Unordered lists, like this (Take note of the space before the text, it must be there):
-    ```
-    - text
-    - text
-    - text
-    ```
+- Unordered lists
 
-- Quotes, using `> ` (Take note of the space before the text, it must be there)
+- Quotes
 
-### Additional stuff to take note of
+Check out [my source code](https://github.com/jdub4asdfg/static-site-generator/blob/main/content/index.md) if you need any help with writing out the different text types in markdown.
+
+#### Additional stuff to take note of:
 The markdown converter does not support nesting text types, meaning you can't do this: `**_bold and italicised text_**`.
 
 The markdown converter parses the markdown file paragraph by paragraph, where paragraphs are separated by a new line, like so:
@@ -78,5 +70,3 @@ Paragraph 2
 ```
 
 Lastly, always start your markdown files with a `h1` header, any text in this header will be the name of your browser tab.
-
-You can visit [this demo site](https://jdub4asdfg.github.io/static-site-generator/) and take a look at my source code under the **content** directory if you need an example of how to write markdown files.
