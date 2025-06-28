@@ -41,7 +41,7 @@ Static site generator supports several text types:
 
 - Bold, using `**`
 
-- Italic, using `-`
+- Italic, using `_`
 
 - Code, **`** for single line code, **```** for code that spans multiple lines
 
@@ -70,7 +70,7 @@ Static site generator supports several text types:
 ### Additional stuff to take note of
 The markdown converter does not support nesting text types, meaning you can't do this: `**_bold and italicised text_**`.
 
-The markdown converter parses the markdown file paragraph by paragraph, where paragraphs are seperated by a new line, like so:
+The markdown converter parses the markdown file paragraph by paragraph, where paragraphs are separated by a new line, like so:
 ```
 Paragraph 1
 
